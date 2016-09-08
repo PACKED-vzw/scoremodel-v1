@@ -1,0 +1,81 @@
+<h1>Eis</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Waarde</th>
+            <td>{{ entity.waarde }}</td>
+        </tr>
+        <tr>
+            <th>Waarde_en</th>
+            <td>{{ entity.waardeen }}</td>
+        </tr>
+        <tr>
+            <th>Context</th>
+            <td>{{ entity.context }}</td>
+        </tr>
+        <tr>
+            <th>Context_en</th>
+            <td>{{ entity.contexten }}</td>
+        </tr>
+        <tr>
+            <th>Risico</th>
+            <td>{{ entity.risico }}</td>
+        </tr>
+        <tr>
+            <th>Risico_en</th>
+            <td>{{ entity.risicoen }}</td>
+        </tr>
+        <tr>
+            <th>Voorbeeld</th>
+            <td>{{ entity.voorbeeld }}</td>
+        </tr>
+        <tr>
+            <th>Voorbeeld_en</th>
+            <td>{{ entity.voorbeelden }}</td>
+        </tr>
+        <tr>
+            <th>Risiconiveau</th>
+            <td>{{ entity.risiconiveau }}</td>
+        </tr>
+        <tr>
+            <th>Actie</th>
+            <td>{{ entity.actie }}</td>
+        </tr>
+        <tr>
+            <th>Actie_en</th>
+            <td>{{ entity.actieen }}</td>
+        </tr>
+        <tr>
+            <th>Oaismagenta</th>
+            <td>{{ entity.oaisMagenta }}</td>
+        </tr>
+        <tr>
+            <th>Volgorde</th>
+            <td>{{ entity.volgorde }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_eis') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_eis_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('admin_eis_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

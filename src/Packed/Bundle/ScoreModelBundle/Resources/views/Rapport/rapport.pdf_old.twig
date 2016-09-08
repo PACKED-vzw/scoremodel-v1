@@ -1,0 +1,201 @@
+{% extends 'ScoreModelBundle:Rapport:stap1gegevens.html.twig' %}
+
+{% set abpath = '/home/web/scoremodel_tool/path/web' %}
+
+{% block header%}
+
+{% endblock %}
+
+
+{% block navigation%}
+{% endblock%}
+
+{% block sub%}
+<h1 class="subtitle">{%trans%}RAPPORT{%endtrans%}</h1>
+{% endblock%}
+
+
+{% block enlink%}
+<a href="{{ path(app.request.get('_route'), {'_locale': 'en', 'id': app.request.attributes.get('id') }) }}">EN</a>
+
+{% endblock%}
+
+{% block nllink%}
+<a href="{{ path(app.request.get('_route'), {'_locale': 'nl', 'id': app.request.attributes.get('id') }) }}">NL</a>
+{% endblock%}
+
+
+{% block stylesheets %}
+
+<link rel="stylesheet" href="{{ abpath }}/css/bootstrap.css">
+<link rel="stylesheet" href="{{ abpath }}/web/css/stijl.css">
+
+
+{% endblock %}
+
+
+
+{% block footer%}
+<div class="row">
+    <div class="span12" id="division">
+
+    </div>
+</div>
+<div class="row" id="footer">
+
+
+</div>
+{% endblock %}
+
+{% block body %}
+
+<div class="row rapport">
+    <div class="span12">
+
+        <h4>{%trans%}Rapportgegevens{%endtrans%}</h4>
+        <div class="row">
+            <div class="span6">
+                <table class="table table-striped table-condensed">
+                    <tbody>
+                    <tr>
+                        <td><strong>{%trans%}Naam Rapport{%endtrans%}</strong></td>
+                        <td>{{rapport.naam}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{%trans%}Naam Organisatie{%endtrans%}</strong></td>
+                        <td>{{rapport.gebruiker.organisatie}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{%trans%}Naam Gebruiker{%endtrans%}</strong></td>
+                        <td>{{rapport.gebruiker.username}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{%trans%}Aangemaakt op{%endtrans%}</strong></td>
+                        <td>{{rapport.datumGeneratie | date('d-m-Y H:i:s')}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="span12">
+                <h4>{%trans%}Grafiek{%endtrans%}</h4>
+                <img src="{{ abpath }}/{{grafiek}}" class="img-polaroid"/>
+                <h4>{%trans%}Resultaten{%endtrans%}</h4>
+                <div class="rapport-toc rapport-sectie">
+                    <h5>{%trans%}Inhoudsopgave{%endtrans%}</h5>
+                    <ul class="well">
+                        {% for sectie in secties %}
+                        <li><a href="#sectie{{sectie.volgorde}}">{%trans%}Sectie{%endtrans%} {{sectie.volgorde}}:
+                            {%if app.request.locale == 'nl'%}
+                            {{sectie.waarde}}
+                            {%elseif app.request.locale == 'en'%}
+                            {{sectie.waardeEn}}
+                            {%endif%}
+
+                        </a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+
+                {% for sectie in secties %}
+
+
+                <div class="rapport-sectie">
+                    <h4 id="sectie{{sectie.volgorde}}">{%trans%}Sectie{%endtrans%} {{sectie.volgorde}}:
+                        {%if app.request.locale == 'nl'%}
+                        {{sectie.waarde}}
+                        {%elseif app.request.locale == 'en'%}
+                        {{sectie.waardeEn}}
+                        {%endif%}
+                    </h4>
+
+                    {% set secid = sectie.id %}
+                    <span class="label">Score: {{score[secid]['totaal']}}</span>
+                    {% for eis in sectie.eisen %}
+                    {% set eisid = eis.id %}
+                    <div class="well">
+                        <h5 class="
+            {%if score[secid][eisid]=="ja"%}
+            text-success
+            {%elseif score[secid][eisid]=="nee"%}
+            text-error
+            {%endif%}
+
+            ">{{ eis.volgorde }}.
+
+                            {%if app.request.locale == 'nl'%}
+                            {{ eis.waarde }}
+                            {%elseif app.request.locale == 'en'%}
+                            {{ eis.waardeEn}}
+                            {%endif%}
+
+                        </h5>
+                        <p>
+                 <span class="label
+                        {%if eis.risiconiveau == 'A'%}
+                        label-important
+                        {%elseif eis.risiconiveau == 'B'%}
+                        label-warning
+                        {%else%}
+                        label-success
+                        {%endif%}
+                        ">
+                {%trans%}Risiconiveau{%endtrans%}
+                {%if eis.risiconiveau == 'A'%}
+                {%trans%}hoog{%endtrans%}
+                {%elseif eis.risiconiveau == 'B'%}
+                {%trans%}normaal{%endtrans%}
+                {%else%}
+                {%trans%}laag{%endtrans%}
+                {%endif%}
+                </span>
+                        </p>
+                        <dl>
+                            <dt>{%trans%}Context{%endtrans%}</dt>
+                            <dd>
+                                {%if app.request.locale == 'nl'%}
+                                {{eis.context}}
+                                {%elseif app.request.locale == 'en'%}
+                                {{eis.contextEn}}
+                                {%endif%}
+                            </dd>
+                            <dt>{%trans%}Risico{%endtrans%}</dt>
+                            <dd>
+                                {%if app.request.locale == 'nl'%}
+                                {{eis.risico}}
+                                {%elseif app.request.locale == 'en'%}
+                                {{eis.risicoEn}}
+                                {%endif%}
+                            </dd>
+                            <dt>{%trans%}Voorbeeld{%endtrans%}</dt>
+                            <dd>
+                                {%if app.request.locale == 'nl'%}
+                                {{eis.voorbeeld}}
+                                {%elseif app.request.locale == 'en'%}
+                                {{eis.voorbeeldEn}}
+                                {%endif%}
+                            </dd>
+                            <dt>{%trans%}Acties{%endtrans%}</dt>
+                            <dd>
+                                {%if app.request.locale == 'nl'%}
+                                {{eis.actie}}
+                                {%elseif app.request.locale == 'en'%}
+                                {{eis.actieEn}}
+                                {%endif%}
+                            </dd>
+                        </dl>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

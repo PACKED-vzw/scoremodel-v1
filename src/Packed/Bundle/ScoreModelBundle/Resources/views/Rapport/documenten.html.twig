@@ -1,0 +1,38 @@
+{% extends '::layout.html.twig' %}
+{%block documentenmenuclass%}active{% endblock %}
+{% block sub %}<h1 class="subtitle">{%trans%} Documenten {%endtrans%}</h1>{%endblock%}
+{% block body %}
+<div class="row">
+    <div class="span10 offset1">
+      <table class="table table-striped">
+          <thead>
+          <tr>
+              <th>{%trans%}Bestand{%endtrans%}</th>
+              <th>{%trans%}Beschrijving{%endtrans%}</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          {% for document in documents %}
+          {% if app.request.locale=="nl" and document.beschrijvingNl != "" %}
+          <tr>
+              <td><a href="/{{document.getWebPath}}">{{document.name}}</a></td>
+
+              <td>{{document.beschrijvingNl}}</td>
+
+          </tr>
+          {% elseif app.request.locale=="en" and document.beschrijvingEn != "" %}
+          <tr>
+              <td><a href="/{{document.getWebPath}}">{{document.name}}</a></td>
+              <td>{{document.beschrijvingEn}}</td>
+
+          </tr>
+          {% endif %}
+          {% endfor %}
+          </tbody>
+
+      </table>
+    </div>
+</div>
+
+{%endblock%}

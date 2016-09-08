@@ -1,0 +1,29 @@
+{% extends '::layout.html.twig'%}
+{% block title 'Scoremodel'  %}
+{% block sub%}
+   <h1 class="subtitle">{%trans%} Beheersinterface {%endtrans%}</h1>
+{% endblock%}
+
+{% block navigation%}
+<div class="navbar " id="navigatie">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li class="{%block gebruikersmenuclass%}{% endblock %}"><a href="{{path('ai_gebruiker_index')}}">Gebruikers</a></li>
+
+            <li class="dropdown {%block inhoudbeherenmenuclass%}{% endblock %}">
+                <a class="dropdown-toggle" id="drop4" role="button" data-toggle="dropdown" href="{{path('ai_gebruiker_index')}}">Inhoud beheren <b class="caret"></b></a>
+                <ul id="menu1" class="dropdown-menu" role="menu" aria-labelledby="drop4">
+                    <li><a tabindex="-1" href="{{path('ai_beheren_statischeinhoud')}}">Statische inhoud</a></li>
+                    <li><a tabindex="-1" href="{{path('ai_beheren_sectieseneisen')}}">Secties en vragen</a></li>
+                    <li><a tabindex="-1" href="{{path('ai_beheren_documenten')}}">Achtergronddocumenten</a></li>
+
+                </ul>
+            </li>
+
+
+            <li class="{%block statistiekenmenuclass%}{% endblock %}"><a href="{{path('ai_statistieken')}}">Exporteren</a></li>
+
+        </ul>
+    </div>
+</div>
+{% endblock %}

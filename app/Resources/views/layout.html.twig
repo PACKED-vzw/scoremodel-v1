@@ -1,0 +1,17 @@
+{% extends '::base.html.twig'%}
+
+{% block title 'Scoremodel'  %}
+
+
+{% block stylesheets %}
+
+{% stylesheets
+'css/bootstrap.css'
+'css/stijl.css'
+filter='cssrewrite'
+%}
+<link rel="stylesheet" href="{{ asset_url }}">
+{% endstylesheets %}
+{% endblock %}
+
+

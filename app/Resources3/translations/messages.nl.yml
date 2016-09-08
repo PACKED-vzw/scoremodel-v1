@@ -1,0 +1,66 @@
+klik.nieuw: Klik op start om een nieuw rapport aan te maken. Elke wijziging wordt onmiddellijk opgeslagen. U kan de vragenlijst op elk moment onderbreken en later hervatten.
+niet.ingelogd.tekst: >
+ <p><strong>U bent niet ingelogd.</strong> <br/> Voer uw gegevens in of maak een <a href="%path%">nieuwe account</a> aan.</p>
+ <p>U kan de tool ook anoniem gebruiken door in te loggen met:</p>
+ <table>
+ <tr>
+ <td>Gebruikersnaam</td> <td> <strong>anoniem</strong> </td>
+ </tr>
+ <tr>
+ <td>Wachtwoord</td> <td><strong>anoniem</strong></td>
+ </tr>
+ </table>
+tool.anoniem: >
+  <strong>Wenst u de tool anoniem te gebruiken?</strong><br/>
+  Klik op start om een nieuw rapport aan te maken zonder in te loggen.
+recente.rapporten: >
+  <p>Hieronder vind je een lijst van uw meest recente rapporten.
+  Selecteer hieronder een rapport waarmee je kan verdergaan,
+  wil je een nieuwe zelfevaluatie doen kan je een <a href="%path%">nieuw rapport</a> aanmaken.</p>
+stap1: <strong>Stap 1</strong> Gegevens invoeren
+stap2: <strong>Stap 2</strong> Secties doorlopen
+stap3: <strong>Stap 3</strong> Samenvattend overzicht
+naam.rapport.waarschuwing: <strong>Opgepast!</strong> Vergeet geen naam voor dit rapport op te geven
+laatste.vraag: <p>Dit was de laatste vraag van het rapport.</p>
+rapport.genereren: "<p>Klik op <a href=#rapportgenereren>rapport genereren</a> om het rapport te bekijken.</p>"
+rapport.secties.overzicht: "<p> Je kan <a href=#secties>alle secties</a> nog overlopen vooraaleer verder te gaan.</p>"
+
+wachtwoord.vergeten.titel: Wachtwoord vergeten?
+email.ingeven: Geef hieronder het emailadres waar je je met geregistreerd hebt in.
+mail.verzonden.succes: Je zal onmiddellijk een email ontvangen met verdere instructies om een nieuw wachtwoord aan te vragen.
+mail.verzonden.fout: Er ging iets mis met het verzenden van de email.
+Verstuur: Verstuur
+probleem.versturen.mail: <p>Probleem met versturen van mail. Probeer nog eens</p>
+gebruiker.nietgevonden: <p><strong>Fout</strong> kan gebruiker niet vinden</p>
+wachtwoordvergeten.mail:  Hallo, <br/> klik op onderstaande link om een nieuw wachtwoord in te stellen <br/>
+
+berekening.score: >
+ <div id="p-over">
+  <h3>Hoe wordt de score berekend?</h3>
+   <ul>
+    <li>De score geeft het totale risiconiveau van de sectie aan, hoe hoger hoe minder risico de organisatie loopt.
+      Elke eis heeft een bepaald risiconiveau
+      (<span class="label label-success">laag</span>,
+      <span class="label label-warning">normaal</span>, of
+      <span class="label label-important">hoog</span>).
+      Met de rode eisen (risiconiveau hoog) kan 60% van de punten behaald worden,
+      met de gele eisen (risiconiveau normaal) 30% en met de groene 10%.
+    </li>
+ </ul>
+ <i class="icon-warning-sign"></i><strong> Opgelet!</strong>
+ <ul>
+    <li>Wanneer niet aan alle eisen met een hoog risiconiveau is voldaan, worden de scores voor de eisen met een normaal of laag risiconiveau op 0 gezet.</li>
+    <li>Wanneer niet aan alle eisen met een normaal risiconiveau is voldaan, worden de scores voor de eisen met een laag risiconiveau op 0 gezet.</li>
+ </ul>
+ </div>
+wijzig.wachtwoord.titel: Wachtwoord wijzigen
+wachtwoord: Wachtwoord
+herhaal.wachtwoord: Herhaal wachtwoord
+wijzig.wachtwoord: Wijzig wachtwoord
+wachtwoord.lengte: Het wachtwoord moet minstens uit 5 en ten hoogste uit 20 tekens bestaan.
+wachtwoord.match: De ingevoerde waarden komen niet overeen.
+wachtwoord.veranderd: Het wachtwoord werd gewijzigd.
+token.invalid: Invalide token.
+intro.actieplan: >
+ Hieronder vind je, onderverdeeld per sectie, een overzicht van de eisen waar de organisatie nog niet aan voldoet.
+intro.resultaten: Hieronder vind je de resultaten van alle eisen terug.

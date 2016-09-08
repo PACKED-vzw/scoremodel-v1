@@ -1,0 +1,15 @@
+{% extends '::layout.html.twig' %}
+{%block disclaimermenuclass%}active{% endblock %}
+{% block sub %}<h1 class="subtitle">{%trans%} Disclaimer {%endtrans%}</h1>{%endblock%}
+{% block body %}
+<div class="row">
+    <div class="span10 offset1">
+        {% if app.request.locale == "nl"%}
+              {{disclaimer.waarde | raw }}
+        {% elseif app.request.locale == "en" %}
+              {{disclaimer.waardeEn | raw}}
+        {% endif %}
+    </div>
+</div>
+
+{%endblock%}

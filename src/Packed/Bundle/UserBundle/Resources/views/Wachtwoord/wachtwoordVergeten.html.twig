@@ -1,0 +1,58 @@
+{% extends '::layout.html.twig'%}
+{% block javascripts %}
+ {{ parent() }}
+ <script type="text/javascript">
+     $(document).ready(function(){
+        function mailFout(fout){
+            $('#ww-status').removeClass('alert-info alert-success alert-danger').addClass('alert-danger');
+            $('#boodschap-ww').html(fout);
+        }
+        function mailSucces(){
+            $('#ww-status').removeClass('alert-info alert-success alert-danger').addClass('alert-success');
+            $('#boodschap-ww').text("{%trans%}mail.verzonden.succes{%endtrans%}");
+        }
+
+        $('#email-versturen').click(function(event){
+           event.preventDefault();
+            $(this).attr('disabled', 'disabled');
+            $.ajax({
+                url: '{{path('wachtwoord_token_aanvragen')}}',
+                async: false,
+                data: {
+                    email:$('#email').val()
+                },
+                success: function(data){
+                    result = jQuery.parseJSON( data );
+                    if(result.success=="ok"){
+                        mailSucces();
+                    }
+                    else {
+                        mailFout(result.boodschap);
+                    }
+                },
+                error: mailFout("{%trans%}mail.verzonden.fout{%endtrans%}")
+            })
+        });
+     });
+
+ </script>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="span2">
+        <a href="{{ path('_welcome')}}"><i class="icon-arrow-left"></i> {% trans %}terugkeren.hoofdpagina{% endtrans %}</a>
+    </div>
+    <div class="span10">
+        <h2>{% trans %}wachtwoord.vergeten.titel{% endtrans %}</h2>
+        <div id="ww-status" class="alert alert-info">
+            <span id="boodschap-ww">{% trans %}email.ingeven{% endtrans %}</span>
+        </div>
+        <form class="form-horizontal" method="post">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email"/>
+          <input type="submit" class="btn btn-primary" id="email-versturen" value="{% trans %}Verstuur{% endtrans %}"/>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{%block body%}
+<form action="{{ path('admin_document_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    <p>
+        <label for="bestand">Bestand</label>
+        <div class="well" id="bestand"><a href="/{{entity.getWebPath}}">{{entity.path}}</a></div>
+    </p>
+
+    {{ form_widget(edit_form) }}
+    <p>
+        <button class="btn btn-primary" type="submit">Bewerken</button>
+    </p>
+</form>
+
+
+<form action="{{ path('admin_document_delete', { 'id': entity.id }) }}" method="post">
+    {{ form_widget(delete_form) }}
+    <button class="btn btn-danger" type="submit" >Verwijder</button>
+</form>
+
+{% endblock %}

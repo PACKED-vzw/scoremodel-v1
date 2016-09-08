@@ -1,0 +1,85 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $(".verwijder-rapport").click(function(){
+            var zeker = confirm("Rapport met id "+ $(this).attr('title') +" verwijderen? " +
+                    "Deze actie kan niet ongedaan gemaakt worden.");
+            if(zeker){
+                $.ajax({
+
+                    url: '{{path("rapport_delete")}}'+'/'+$(this).attr('title')
+                    ,
+                    type: 'POST',
+                    success: function (data) {
+
+                       if(data=="ok"){
+                           alert('{%trans%}Rapport.verwijderd{%endtrans%}');
+                       }
+                       else {
+                           alert('{%trans%}Rapport.verwijderen.fout{%endtrans%}');
+                       }
+                    window.location.href = '{{path("toonRapportenVoorGebruiker")}}';
+                    },
+                    error: function(){ alert('{%trans%}Rapport.verwijderen.fout{%endtrans%}')}
+                });
+
+
+
+
+            }
+        });
+    });
+
+</script>
+{% endblock %}
+
+{% block enlink%}
+<a href="{{ path(app.request.get('_route'), {'_locale': 'en', 'id': app.request.attributes.get('id') }) }}">EN</a>
+{% endblock%}
+
+{% block nllink%}
+<a href="{{ path(app.request.get('_route'), {'_locale': 'nl', 'id': app.request.attributes.get('id')}) }}">NL</a>
+{% endblock%}
+{% block body %}
+<div class="span12">
+
+            <table class="table table-condensed table-striped">
+                <thead>
+                <tr>
+                    <th>{%trans%}Naam rapport{%endtrans%}</th>
+                    <th>{%trans%}Aangemaakt op{%endtrans%}</th>
+                    <th>{%trans%}Acties{%endtrans%}</th>
+                </tr>
+                </thead>
+            <tbody>
+
+            {% for rapport in gebruiker.rapporten%}
+            <tr>
+                <td><a href="{{path('rapport_stap1',{'_locale': app.request.locale, 'id': rapport.id})}}">
+                    {% if rapport.naam != "" %}
+                    {{rapport.naam}}
+                    {% else %}
+                    {% if app.request.locale == "nl"%}
+                    [naamloos rapport]
+                    {%elseif app.request.locale == "en"%}
+                    [nameless report]
+                    {%endif%}
+                    {% endif %}
+                </a></td>
+                <td>{{rapport.datumGeneratie | date('d-m-Y H:i:s')}}</td>
+                <td><button class="btn btn-small btn-danger verwijder-rapport" title="{{rapport.id}}"><i class="icon-trash icon-white"></i></button>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}

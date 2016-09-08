@@ -1,0 +1,15 @@
+<h4>{%trans%}Sectie bewerken{%endtrans%}</h4>
+
+<form action="{{ path('admin_sectie_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form) }}
+    <p>
+        <button type="submit" class="btn btn-primary ">{%trans%}Bewerken{%endtrans%}</button>
+    </p>
+</form>
+
+
+
+<form action="{{ path('admin_sectie_delete', { 'id': entity.id }) }}" method="post">
+    {{ form_widget(delete_form) }}
+    <button class="btn btn-danger" type="submit">Verwijder</button>
+</form>

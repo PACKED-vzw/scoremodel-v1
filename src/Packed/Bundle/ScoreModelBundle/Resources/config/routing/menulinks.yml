@@ -1,0 +1,17 @@
+faq:
+    pattern:  /{_locale}/faq
+    defaults: { _controller: "ScoreModelBundle:Rapport:faq", _locale: nl}
+    requirements:
+            _locale: en|nl
+
+documenten:
+    pattern:  /{_locale}/documenten
+    defaults: { _controller: "ScoreModelBundle:Rapport:documenten", _locale: nl}
+    requirements:
+            _locale: en|nl
+
+disclaimer:
+    pattern:  /{_locale}/disclaimer
+    defaults: { _controller: "ScoreModelBundle:Rapport:disclaimer", _locale: nl}
+    requirements:
+            _locale: en|nl

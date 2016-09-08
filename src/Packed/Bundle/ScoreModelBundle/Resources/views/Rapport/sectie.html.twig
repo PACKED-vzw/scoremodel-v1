@@ -1,0 +1,284 @@
+{% extends 'ScoreModelBundle:Rapport:stap1gegevens.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+
+        function updateScore(e_rapport, e_sectie, e_eis){
+        $.ajax({
+            url: '{{path("rapport_bereken")}}',
+            data: {
+                rapport: e_rapport,
+                sectie: e_sectie,
+                eis: e_eis
+
+            },
+            success: function (data) {
+
+                var score = JSON.parse(data);
+                var behaald = score.behaald;
+                var totaal = score.totaal;
+                $('#scorevoorsectie').html(behaald + "/" + totaal );
+            }
+        });
+        }
+
+        //updateScore();
+        $('.radio_eis').change(function() {
+            var waarde = jQuery(this).attr("id");
+
+            updateScore({{ id }}, {{ sectie.id }}, waarde  )
+                });
+
+
+        $('.score-box').click(function(){
+            $('#score-uitleg-modal').modal();
+        });
+    });
+
+</script>
+{% endblock %}
+
+{% block enlink%}
+<a href="{{ path(app.request.get('_route'), {'_locale': 'en', 'id': app.request.attributes.get('id'), 'sid': app.request.attributes.get('sid') }) }}">EN</a>
+{% endblock%}
+
+{% block nllink%}
+<a href="{{ path(app.request.get('_route'), {'_locale': 'nl', 'id': app.request.attributes.get('id'),'sid': app.request.attributes.get('sid') }) }}">NL</a>
+{% endblock%}
+
+{% block stap1%}
+<li><a href="
+ {{ path('rapport_stap1',
+                {'_locale': app.request.locale,
+                 'id': rapport.id
+                 }) }}
+
+">{%trans%}stap1{%endtrans%}</a></li>
+{% endblock%}
+{% block stap2%}
+<li class="active"><a href="{{ path(app.request.get('_route'), {'_locale': app.request.locale , 'id': app.request.attributes.get('id'), 'sid': app.request.attributes.get('sid') }) }}">{%trans%}stap2{%endtrans%}</a></li>
+{% endblock%}
+{% block stap3%}
+<li><a href="{{ path('rapport_controle', {'_locale': app.request.locale , 'id': rapport.id }) }}">{%trans%}stap3{%endtrans%}</a></li>
+{% endblock %}
+{% block stap4%}
+<li><a href="{{path('rapport_rapport', {'id': rapport.id})}}">{%trans%}Bekijk rapport{%endtrans%}</a></li>
+{% endblock %}
+{% block body %}
+<div class="row">
+    {% block rapportnavigatie %}
+    {{ parent() }}
+    {% endblock %}
+
+    <div class="span9">
+        <div class="page-header">
+            <h2 id="sectie-titel">{%trans%}Sectie{%endtrans%} {{sectie.volgorde}}:
+                {%if app.request.locale == 'nl'%}
+                {{sectie.waarde}}
+                {% elseif app.request.locale == 'en'%}
+                {{sectie.waardeEn}}
+                {%endif%}
+            </h2>
+        </div>
+
+
+
+        <div class="modal" id="score-uitleg-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+
+            <div class="modal-body">
+                {%trans%}berekening.score{%endtrans%}
+
+
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Sluiten</button>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <h4>Intro</h4>
+        <div class="well">
+        <p>
+            {%if app.request.locale == 'nl'%}
+            {{sectie.intro}}
+            {% elseif app.request.locale == 'en'%}
+            {{sectie.introEn}}
+            {%endif%}
+        </p>
+        </div>
+        <h4>{%trans%}Eisen{%endtrans%}</h4>
+
+
+            {% for eis in sectie.eisen %}
+        <div class="eis well">
+            <div class="row">
+                <div class="span4">
+                    <div class="eisbox">
+                        <p><span class="badge
+                        {%if eis.risiconiveau == 'A'%}
+                        badge-important
+                        {%elseif eis.risiconiveau == 'B'%}
+                        badge-warning
+                        {%else%}
+                        badge-success
+                        {%endif%}
+
+                        ">{{eis.volgorde}}</span> <strong>
+                            {%if app.request.locale == 'nl'%}
+                            {{ eis.waarde }}
+                            {%elseif app.request.locale == 'en'%}
+                            {{ eis.waardeEn }}
+                            {%endif%}
+                        </strong>
+                        </p>
+                        <label class="radio">
+                            <input type="radio" name="eis_{{eis.id}}" id="ja_{{eis.id}}" class="radio_eis" value="ja" {%if score[sectie.id][eis.id]=="ja"%}checked{%endif%}>
+
+
+                            {%trans%}ja{%endtrans%}
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="eis_{{eis.id}}" id="nee_{{eis.id}}" class="radio_eis" value="nee" {%if score[sectie.id][eis.id]=="nee"%}checked{%endif%}>
+                            {%trans%}nee{%endtrans%}
+                        </label>
+                        <span class="label
+                        {%if eis.risiconiveau == 'A'%}
+                        label-important
+                        {%elseif eis.risiconiveau == 'B'%}
+                        label-warning
+                        {%else%}
+                        label-success
+                        {%endif%}
+                        ">
+                            {%trans%}Risiconiveau{%endtrans%}
+                        {%if eis.risiconiveau == 'A'%}
+                        {%trans%}hoog{%endtrans%}
+                        {%elseif eis.risiconiveau == 'B'%}
+                        {%trans%}normaal{%endtrans%}
+                        {%else%}
+                        {%trans%}laag{%endtrans%}
+                        {%endif%}
+
+                        </span>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="tabbable  contextbox">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#rEis{{eis.id}}A" data-toggle="tab">{%trans%}Context{%endtrans%}</a></li>
+                            <li><a href="#rEis{{eis.id}}B" data-toggle="tab">{%trans%}Risico{%endtrans%}</a></li>
+                            <li><a href="#rEis{{eis.id}}C" data-toggle="tab">{%trans%}Voorbeeld{%endtrans%}</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="rEis{{eis.id}}A">
+                                <p>
+                                    {%if app.request.locale == 'nl'%}
+                                    {{ eis.context }}
+                                    {%elseif app.request.locale == 'en'%}
+                                    {{ eis.contextEn }}
+                                    {%endif%}
+                                </p>
+                            </div>
+                            <div class="tab-pane" id="rEis{{eis.id}}B">
+                                <p>
+                                    {%if app.request.locale == 'nl'%}
+                                    {{ eis.risico }}
+                                    {%elseif app.request.locale == 'en'%}
+                                    {{ eis.risicoEn }}
+                                    {%endif%}
+
+                                </p>
+                            </div>
+                            <div class="tab-pane" id="rEis{{eis.id}}C">
+                                <p>
+                                    {%if app.request.locale == 'nl'%}
+                                    {{ eis.voorbeeld }}
+                                    {%elseif app.request.locale == 'en'%}
+                                    {{ eis.voorbeeldEn }}
+                                    {%endif%}
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="alert alert-info score-box">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+             {%trans%}Totale score voor{%endtrans%}
+            {%if app.request.locale == 'nl'%}
+            {{sectie.waarde}}
+            {%elseif app.request.locale == 'en'%}
+            {{sectie.waardeEn}}
+            {%endif%}
+            <strong>  <span id="scorevoorsectie">{{score[sectie.id]['totaal']}}/100</span></strong>
+             <i class="icon-question-sign"></i>
+        </div>
+        <ul class="pager">
+            <li class="previous">
+                <a href="
+                {%if vorige_sectie.id != 0%}
+                {{ path(app.request.get('_route'),
+                {'_locale': app.request.locale,
+                 'id': app.request.attributes.get('id'),
+                 'sid': vorige_sectie.volgorde
+                 }) }}
+                 {%else%}
+                 {{ path('rapport_stap1',
+                {'_locale': app.request.locale,
+                 'id': app.request.attributes.get('id')
+                 }) }}
+                 {%endif%}
+                ">&larr;
+                    {%if app.request.locale == 'nl'%}
+                    {{vorige_sectie.waarde}}
+                    {%elseif app.request.locale == 'en'%}
+                    {{vorige_sectie.waardeEn}}
+
+                    {% endif %}
+                </a>
+
+            </li>
+            <li class="next">
+                <a href="
+                {%if volgende_sectie.volgorde is defined%}
+                {{ path(app.request.get('_route'),
+                {'_locale': app.request.locale,
+                 'id': app.request.attributes.get('id'),
+                 'sid': volgende_sectie.volgorde
+                 }) }}
+                 {%else%}
+                 {{ path('rapport_controle',{'_locale': app.request.locale, 'id':app.request.attributes.get('id')}) }}
+                 {%endif%}
+
+                ">
+                    {%if app.request.locale == 'nl'%}
+                    {{volgende_sectie.waarde}}
+                    {%elseif app.request.locale == 'en'%}
+                    {{volgende_sectie.waardeEn}}
+                    {% endif %}
+
+
+                    &rarr;</a>
+            </li>
+        </ul>
+
+        <div class="progress progress-striped active" style=" margin-top:5px;">
+            <div class="bar" style="width: {{ percentage }}%;"></div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,78 @@
+rapport:
+    pattern:  /
+    defaults: { _controller: "ScoreModelBundle:Rapport:index" }
+
+rapport_stap1:
+    pattern:  /{_locale}/stap1/{id}
+    defaults: { _controller: "ScoreModelBundle:Rapport:stap1", _locale: nl, id:0 }
+    requirements:
+            _locale: en|nl
+
+
+rapport_bereken:
+    pattern:  /bereken
+    defaults: { _controller: "ScoreModelBundle:Rapport:berekenscoreajax" }
+
+
+rapport_sectie:
+    pattern:  /{_locale}/{id}/sectie/{sid}
+    defaults: { _controller: "ScoreModelBundle:Rapport:sectie", _locale: nl}
+    requirements:
+                _locale: en|nl
+
+rapport_controle:
+    pattern: /{_locale}/{id}/controle
+    defaults:  { _controller: "ScoreModelBundle:Rapport:controle", _locale: nl}
+    requirements:
+                    _locale: en|nl
+
+rapport_rapport:
+    pattern: /{_locale}/{id}/rapport/{_format}
+    defaults:  { _controller: "ScoreModelBundle:Rapport:rapport", _locale: nl, _format: html}
+    requirements:
+                    _locale: en|nl
+                    _format: html|pdf
+
+
+toonRapportenVoorGebruiker:
+    pattern: /{_locale}/toon-rapporten
+    defaults: { _controller: "ScoreModelBundle:Rapport:toonRapportenVoorGebruiker", _locale: nl}
+    requirements:
+                    _locale: en|nl
+
+rapport_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ScoreModelBundle:Rapport:show" }
+
+rapport_new:
+    pattern:  /new
+    defaults: { _controller: "ScoreModelBundle:Rapport:new" }
+
+rapport_create:
+    pattern:  /create
+    defaults: { _controller: "ScoreModelBundle:Rapport:create" }
+    requirements: { _method: post }
+
+rapport_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ScoreModelBundle:Rapport:edit" }
+
+rapport_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ScoreModelBundle:Rapport:update" }
+    requirements: { _method: post }
+
+rapport_delete:
+    pattern:  /delete/{id}
+    defaults: { _controller: "ScoreModelBundle:Rapport:delete", id: 0 }
+    requirements: { _method: post }
+
+
+
+
+
+
+
+
+
+

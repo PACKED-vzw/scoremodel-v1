@@ -1,0 +1,124 @@
+{% extends 'ScoreModelBundle:Rapport:aiLayout.html.twig' %}
+{% block inhoudbeherenmenuclass%}active{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.sectie-bewerken').click(function(){
+                    var id_sectie = jQuery(this).attr("title");
+                    $('#wijzig-div').modal();
+                    $.ajax({
+                        url: '{{path("admin_sectie_edit")}}'+'/'+id_sectie
+                       ,
+                        success: function (data) {
+                            $('#wijzig-div-modal').html(data);
+                        }
+                    });
+
+
+                }
+
+        );
+        $('.eis-bewerken').click(function(){
+                    var id_eis = jQuery(this).attr("title");
+                    $('#wijzig-div').modal();
+                    $.ajax({
+                        url: '{{path("admin_eis_edit")}}'+'/'+id_eis
+                        ,
+                        success: function (data) {
+                            $('#wijzig-div-modal').html(data);
+                        }
+                    });
+                }
+
+        );
+        $('#sectietoevoegen').click(function(){
+            $('#wijzig-div').modal();
+            $.ajax({
+                url: '{{path("admin_sectie_new")}}'
+                ,
+                success: function (data) {
+                    $('#wijzig-div-modal').html(data);
+                }
+            });
+        });
+        $('#eistoevoegen').click(function(){
+            $('#wijzig-div').modal();
+            $.ajax({
+                url: '{{path("admin_eis_new")}}'
+                ,
+                success: function (data) {
+                    $('#wijzig-div-modal').html(data);
+                }
+            });
+        });
+    });
+</script>
+{% endblock%}
+
+{% block body %}
+    <div class="modal" id="wijzig-div" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+        <div class="modal-body">
+            <div id="wijzig-div-modal">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Annuleer</button>
+        </div>
+    </div>
+   <div class="row">
+       <div class="span12">
+           <h2>Secties beheren</h2>
+           <p>
+               <button class="btn btn-primary" type="button" id="sectietoevoegen"><i class="icon-plus-sign icon-white"></i> Sectie toevoegen</button>
+               <button class="btn" type="button" id="eistoevoegen"><i class="icon-plus-sign"></i> Eis toevoegen</button>
+           </p>
+   {%if sectie_dubbels==1%}
+           <div class="alert alert-error">
+               <button type="button" class="close" data-dismiss="alert">×</button>
+               <i class="icon-exclamation-sign"></i>
+               <strong>Opgelet!</strong> Meerdere secties hebben dezelfde volgorde!
+           </div>
+   {%endif%}
+           {%if eisen_dubbels==1%}
+           <div class="alert alert-error">
+               <button type="button" class="close" data-dismiss="alert">×</button>
+               <i class="icon-exclamation-sign"></i>
+               <strong>Opgelet!</strong> Meerdere eisen in dezelfde sectie hebben dezelfde volgorde!
+           </div>
+           {%endif%}
+           <table class="table table-bordered table-striped">
+             <thead>
+             <tr>
+                 <th>Volgorde</th>
+                 <th>ID</th>
+                 <th>Label</th>
+                 <th>Eisen</th>
+                 <th>Acties</th>
+             </tr>
+             </thead>
+             <tbody>
+             {% for sectie in secties %}
+             <tr>
+                 <td><strong>{{sectie.volgorde}}</strong></td>
+                 <td><strong>{{sectie.id}}</strong></td>
+                 <td>{{sectie.waarde}}</td>
+                 <td>
+                     <ul class="lijst-eisen">
+                     {% for eis in sectie.eisen %}
+                     <li><strong>{{sectie.volgorde}}.{{eis.volgorde}}</strong>: {{eis.waarde}}  <button class="btn btn-mini eis-bewerken" type="button" title="{{eis.id}}"><i class="icon-pencil"></i></button></li>
+                     {% endfor %}
+                     </ul>
+
+                 </td>
+                 <td><button class="btn sectie-bewerken" type="button" title="{{sectie.id}}"><i class="icon-pencil"></i> Sectie bewerken</button></td>
+             </tr>
+             {% endfor %}
+             </tbody>
+           </table>
+       </div>
+   </div>
+{% endblock %}

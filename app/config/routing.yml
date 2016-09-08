@@ -1,0 +1,27 @@
+score_model:
+    resource: "@ScoreModelBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
+
+
+
+
+_welcome:
+    pattern:  /{_locale}
+    defaults: { _controller: ScoreModelBundle:Rapport:home, _locale: nl }
+    requirements:
+            _locale: en|nl
+
+home:
+    pattern:   /{_locale}/home
+    defaults:  { _controller: ScoreModelBundle:Rapport:home, _locale: nl }
+    requirements:
+        _locale: en|nl
+
+
+_user_bundle:
+     resource: "@UserBundle/Resources/config/routing.yml"

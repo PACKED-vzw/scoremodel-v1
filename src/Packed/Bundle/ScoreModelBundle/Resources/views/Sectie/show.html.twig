@@ -1,0 +1,49 @@
+<h1>Sectie</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Waarde</th>
+            <td>{{ entity.waarde }}</td>
+        </tr>
+        <tr>
+            <th>Waarde_en</th>
+            <td>{{ entity.waardeen }}</td>
+        </tr>
+        <tr>
+            <th>Intro</th>
+            <td>{{ entity.intro }}</td>
+        </tr>
+        <tr>
+            <th>Intro_en</th>
+            <td>{{ entity.introen }}</td>
+        </tr>
+        <tr>
+            <th>Volgorde</th>
+            <td>{{ entity.volgorde }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_sectie') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('admin_sectie_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('admin_sectie_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

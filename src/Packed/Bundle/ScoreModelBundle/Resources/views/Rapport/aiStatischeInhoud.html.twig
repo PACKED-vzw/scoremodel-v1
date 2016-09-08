@@ -1,0 +1,183 @@
+{% extends 'ScoreModelBundle:Rapport:aiLayout.html.twig' %}
+{% block inhoudbeherenmenuclass%}active{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $(document).ready(function(){
+       $('.preview').click(function(){
+                   var ta_preview = jQuery(this).attr("title");
+                   var preview_text = $('#'+ ta_preview).val();
+                   $('#preview-text-modal').html(preview_text);
+                   $('#preview-div').modal();
+               }
+
+       );
+       $('.wijzig').click(function(){
+                   var wijzig = jQuery(this).attr("title");
+                   var wijzig_tekst = $('#'+ wijzig).val();
+                   $.ajax({
+                       type: 'POST',
+                       url: '{{path("ai_wijzigen_statischeinhoud")}}',
+                       data: {
+                           wijzig: wijzig,
+                           wijzig_tekst: wijzig_tekst
+
+                       },
+                       success: function (data) {
+                           $('#'+wijzig).val(data);
+                           $('<div id="update-succes" class="alert alert-success"><button type="button" class="close" data-dismiss="alert">×</button><i class="icon-ok"></i> De inhoud is gewijzigd.</div>').insertBefore('#'+wijzig);
+                       }
+                   });
+                }
+
+       );
+    });
+</script>
+{% endblock%}
+{% block body %}
+<div class="row" xmlns="http://www.w3.org/1999/html">
+      <div class="span3">
+          <ul class="nav nav-tabs nav-stacked">
+              <li><a href="#welkomsttekst">Welkomsttekst</a>  </li>
+              <li><a href="#FAQ">FAQ</a> </li>
+              <li><a href="#disclaimer">Disclaimer</a> </li>
+
+          </ul>
+      </div>
+
+        <div class="modal" id="preview-div" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+            <div class="modal-body">
+                <div id="preview-text-modal">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Sluiten</button>
+            </div>
+        </div>
+
+
+        <div class="span9">
+          <div class="alert alert-info">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <i class="icon-info-sign"></i> Gebruik van html is toegestaan. Probeer valide html in te geven en controleer steeds of alle tags goed afgesloten zijn!
+              Gebruik bij twijfel de <a href="http://validator.w3.org/">W3C validator</a>.
+          </div>
+          <div id="welkomsttekst">
+             <h4>Welkomsttekst bewerken</h4>
+              <div class="row static-nl">
+              <div class="span7 text-static">
+              <label for="welkomsttekst_nl"><span class="label">NL</span></label>
+              <textarea name="welkomsttekst_nl" id="welkomsttekst_nl" rows="10">{{welkomsttekst.waarde}}</textarea>
+              </div>
+              <div class="span2 buttongroup-static">
+                  <button class="btn wijzig" id="wijzig-welkomsttekst_nl" title="welkomsttekst_nl">Wijzig</button>
+                  <button class="btn btn-info preview" id="preview-welkomsttekst_nl" title="welkomsttekst_nl">Preview</button>
+              </div>
+              </div>
+              <div class="row static-nl">
+              <div class="span7 text-static">
+              <label for="welkomsttekst_en"><span class="label">EN</span></label>
+              <textarea name="welkomsttekst_en" id="welkomsttekst_en" rows="10">{{welkomsttekst.waardeEn}}</textarea>
+              </div>
+              <div class="span2 buttongroup-static">
+                  <button class="btn wijzig" id="wijzig-welkomsttekst_en" title="welkomsttekst_en">Wijzig</button>
+                  <button class="btn btn-info preview" id="preview-welkomsttekst_en" title="welkomsttekst_en">Preview</button>
+              </div>
+              </div>
+          </div>
+          <div id="FAQ">
+              <h4>FAQ intro bewerken</h4>
+              <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <i class="icon-info-sign"></i> Geef hier de introductietekst in die bovenaan de FAQ-pagina getoond zal worden.
+
+              </div>
+
+              <div class="row static-nl">
+                  <div class="span7 text-static">
+                      <label for="faqintro_nl"><span class="label">NL</span></label>
+                      <textarea name="faqintro_nl" id="faqintro_nl" rows="10">{{faqintro.waarde}}</textarea>
+                  </div>
+                  <div class="span2 buttongroup-static">
+                      <button class="btn wijzig" id="wijzig-faqintro_nl" title="faqintro_nl">Wijzig</button>
+                      <button class="btn btn-info preview" id="preview-faqintro_nl" title="faqintro_nl">Preview</button>
+                  </div>
+              </div>
+
+              <div class="row static-nl">
+                  <div class="span7 text-static">
+                      <label for="faqintro_en"><span class="label">EN</span></label>
+                      <textarea name="faqintro_en" id="faqintro_en" rows="10">{{faqintro.waardeEn}}</textarea>
+                  </div>
+                  <div class="span2 buttongroup-static">
+                      <button class="btn wijzig" id="wijzig-faqintro_en" title="faqintro_en">Wijzig</button>
+                      <button class="btn btn-info preview" id="preview-faqintro_en" title="faqintro_en">Preview</button>
+                  </div>
+              </div>
+
+              <h4>FAQ bewerken</h4>
+              <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <i class="icon-info-sign"></i> Syntax voor elke vraag:
+                          <pre>
+&lt;div class="faq"&gt;
+  &lt;div class="question"&gt;<strong>Vraag?</strong>&lt;/div&gt;
+  &lt;div class="answer"&gt;<strong>Antwoord</strong>&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+              </div>
+
+              <div class="row static-nl">
+              <div class="span7 text-static">
+              <label for="faq_nl"><span class="label">NL</span></label>
+              <textarea name="faq_nl" id="faq_nl" rows="10">{{faq.waarde}}</textarea>
+               </div>
+                  <div class="span2 buttongroup-static">
+                      <button class="btn wijzig" id="wijzig-faq_nl" title="faq_nl">Wijzig</button>
+                      <button class="btn btn-info preview" id="preview-faq_nl" title="faq_nl">Preview</button>
+                  </div>
+                  </div>
+
+              <div class="row static-nl">
+              <div class="span7 text-static">
+              <label for="faq_en"><span class="label">EN</span></label>
+              <textarea name="faq_en" id="faq_en" rows="10">{{faq.waardeEn}}</textarea>
+              </div>
+                  <div class="span2 buttongroup-static">
+                      <button class="btn wijzig" id="wijzig-faq_en" title="faq_en">Wijzig</button>
+                      <button class="btn btn-info preview" id="preview-faq_en" title="faq_en">Preview</button>
+                  </div>
+                  </div>
+          </div>
+
+          <div id="disclaimer">
+              <h4>Disclaimer bewerken</h4>
+              <div class="row static-nl">
+                  <div class="span7 text-static">
+                     <label for="disclaimer_nl"><span class="label">NL</span></label>
+                     <textarea name="discaimer_nl" id="disclaimer_nl" rows="10">{{disclaimer.waarde}}</textarea>
+                  </div>
+                  <div class="span2 buttongroup-static">
+                      <button class="btn wijzig" id="wijzig-disclaimer_nl" title="disclaimer_nl">Wijzig</button>
+                      <button class="btn btn-info preview" id="preview-disclaimer_nl" title="disclaimer_nl">Preview</button>
+                  </div>
+              </div>
+
+              <div class="row static-nl">
+                  <div class="span7 text-static">
+                      <label for="disclaimer_en"><span class="label">EN</span></label>
+                      <textarea name="disclaimer_en" id="disclaimer_en" rows="10">{{disclaimer.waardeEn}}</textarea>
+                  </div>
+                  <div class="span2 buttongroup-static">
+                      <button class="btn wijzig" id="wijzig-dislaimer_en" title="disclaimer_en">Wijzig</button>
+                      <button class="btn btn-info preview" id="preview-disclaimer_en" title="disclaimer_en">Preview</button>
+                  </div>
+               </div>
+          </div>
+
+      </div>
+  </div>
+{% endblock%}

@@ -1,0 +1,60 @@
+{
+
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packagist.org/"
+        }
+    ],
+    "name": "symfony/framework-standard-edition",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "*",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/doctrine-bundle": "1.0.*",
+	"doctrine/annotations": "@stable",
+        "twig/extensions": "1.0.*",
+        "symfony/assetic-bundle": "@stable",
+        "symfony/swiftmailer-bundle": "@stable",
+        "symfony/monolog-bundle": "@stable",
+        "sensio/distribution-bundle": "@stable",
+        "sensio/framework-extra-bundle": "@stable",
+        "sensio/generator-bundle": "@stable",
+        "jms/security-extra-bundle": "@stable",
+        "jms/di-extra-bundle": "@stable",
+	    "friendsofsymfony/user-bundle": "*",
+	    "gregwar/captcha-bundle": "dev-master",
+        "knplabs/knp-snappy": "*",
+        "knplabs/knp-snappy-bundle": "dev-master"
+
+  },
+    "scripts": {
+        "post-install-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web"
+    }
+
+
+
+}

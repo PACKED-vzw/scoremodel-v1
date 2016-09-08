@@ -1,0 +1,61 @@
+<h1>Eis list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Waarde</th>
+            <th>Waarde_en</th>
+            <th>Context</th>
+            <th>Context_en</th>
+            <th>Risico</th>
+            <th>Risico_en</th>
+            <th>Voorbeeld</th>
+            <th>Voorbeeld_en</th>
+            <th>Risiconiveau</th>
+            <th>Actie</th>
+            <th>Actie_en</th>
+            <th>Oaismagenta</th>
+            <th>Volgorde</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr>
+            <td><a href="{{ path('admin_eis_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.waarde }}</td>
+            <td>{{ entity.waardeen }}</td>
+            <td>{{ entity.context }}</td>
+            <td>{{ entity.contexten }}</td>
+            <td>{{ entity.risico }}</td>
+            <td>{{ entity.risicoen }}</td>
+            <td>{{ entity.voorbeeld }}</td>
+            <td>{{ entity.voorbeelden }}</td>
+            <td>{{ entity.risiconiveau }}</td>
+            <td>{{ entity.actie }}</td>
+            <td>{{ entity.actieen }}</td>
+            <td>{{ entity.oaisMagenta }}</td>
+            <td>{{ entity.volgorde }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_eis_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_eis_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('admin_eis_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>

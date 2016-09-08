@@ -1,0 +1,147 @@
+ai_gebruiker_index:
+    pattern:  /{_locale}
+    defaults: { _controller: "ScoreModelBundle:Ai:gebruikersIndex", _locale: nl}
+    requirements:
+                _locale: en|nl
+
+ai_gebruiker_toon:
+     pattern:  /{_locale}/show/{id}
+     defaults: { _controller: "ScoreModelBundle:Ai:toonGebruiker", _locale: nl}
+     requirements:
+                _locale: en|nl
+
+ai_beheren_statischeinhoud:
+     pattern:  /{_locale}/content/static
+     defaults: { _controller: "ScoreModelBundle:Ai:statischeInhoudBeheren", _locale: nl}
+     requirements:
+                _locale: en|nl
+
+ai_wijzigen_statischeinhoud:
+     pattern:  /content/static/update
+     defaults: { _controller: "ScoreModelBundle:Ai:statischeInhoudWijzigen"}
+
+ai_beheren_sectieseneisen:
+     pattern:  /{_locale}/content/rapport
+     defaults: { _controller: "ScoreModelBundle:Ai:sectiesEnEisenBeheren", _locale: nl}
+     requirements:
+                _locale: en|nl
+
+ai_beheren_documenten:
+     pattern:  /{_locale}/content/documenten
+     defaults: { _controller: "ScoreModelBundle:Ai:documentenBeheren", _locale: nl}
+     requirements:
+                _locale: en|nl
+
+ai_statistieken:
+     pattern:  /{_locale}/statistics
+     defaults: { _controller: "ScoreModelBundle:Ai:statistieken", _locale: nl}
+     requirements:
+                _locale: en|nl
+
+ai_exportCsv:
+    pattern: /export/{taal}/{sectieId}
+    defaults: { _controller: "ScoreModelBundle:Ai:exportCsv", taal: nederlands, sectieId: 0 }
+
+
+
+admin_sectie:
+    pattern:  /sectie
+    defaults: { _controller: "ScoreModelBundle:Sectie:index" }
+
+admin_sectie_show:
+    pattern:  /sectie/show/{id}
+    defaults: { _controller: "ScoreModelBundle:Sectie:show" }
+
+admin_sectie_new:
+    pattern:  /sectie/new
+    defaults: { _controller: "ScoreModelBundle:Sectie:new" }
+
+admin_sectie_create:
+    pattern:  /sectie/create
+    defaults: { _controller: "ScoreModelBundle:Sectie:create" }
+    requirements: { _method: post }
+
+
+admin_sectie_edit:
+    pattern:  /sectie/edit/{id}
+    defaults: { _controller: "ScoreModelBundle:Sectie:edit", id: 0 }
+
+admin_sectie_update:
+    pattern:  /sectie/update/{id}
+    defaults: { _controller: "ScoreModelBundle:Sectie:update" }
+    requirements: { _method: post }
+
+admin_sectie_delete:
+    pattern:  /sectie/delete/{id}
+    defaults: { _controller: "ScoreModelBundle:Sectie:delete" }
+    requirements: { _method: post }
+
+admin_eis:
+    pattern:  /eis
+    defaults: { _controller: "ScoreModelBundle:Eis:index" }
+
+admin_eis_show:
+    pattern:  /eis/show/{id}
+    defaults: { _controller: "ScoreModelBundle:Eis:show" }
+
+admin_eis_new:
+    pattern:  /eis/new
+    defaults: { _controller: "ScoreModelBundle:Eis:new" }
+
+admin_eis_create:
+    pattern:  /eis/create
+    defaults: { _controller: "ScoreModelBundle:Eis:create" }
+    requirements: { _method: post }
+
+admin_eis_edit:
+    pattern:  /eis/edit/{id}
+    defaults: { _controller: "ScoreModelBundle:Eis:edit", id: 0 }
+
+admin_eis_update:
+    pattern:  /eis/update/{id}
+    defaults: { _controller: "ScoreModelBundle:Eis:update" }
+    requirements: { _method: post }
+
+admin_eis_delete:
+    pattern:  /eis/delete/{id}
+    defaults: { _controller: "ScoreModelBundle:Eis:delete" }
+    requirements: { _method: post }
+
+admin_document:
+    pattern:  /document
+    defaults: { _controller: "ScoreModelBundle:Document:index" }
+
+admin_document_show:
+    pattern:  /document/show/{id}
+    defaults: { _controller: "ScoreModelBundle:Document:show" }
+
+admin_document_new:
+    pattern:  /document/new
+    defaults: { _controller: "ScoreModelBundle:Document:new" }
+
+admin_document_create:
+    pattern:  /document/create
+    defaults: { _controller: "ScoreModelBundle:Document:create" }
+    requirements: { _method: post }
+
+
+admin_document_edit:
+    pattern:  /document/{_locale}/edit/{id}
+    defaults: { _controller: "ScoreModelBundle:Document:edit" , id:0, _locale:nl }
+
+
+admin_document_update:
+    pattern:  /document/update/{id}
+    defaults: { _controller: "ScoreModelBundle:Document:update" }
+    requirements: { _method: post }
+
+admin_document_delete:
+    pattern:  /document/delete/{id}
+    defaults: { _controller: "ScoreModelBundle:Document:delete" }
+    requirements: { _method: post }
+
+admin_user_delete:
+    pattern:  /user/delete/{id}
+    defaults: { _controller: "ScoreModelBundle:Ai:verwijderGebruiker", id:0 }
+    requirements: { _method: post }
+

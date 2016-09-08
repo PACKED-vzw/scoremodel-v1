@@ -1,0 +1,45 @@
+{% extends '::layout.html.twig'%}
+{% block javascripts %}
+  {{parent()}}
+  <script type="text/javascript">
+    $('#versturen').click(function(event){
+        if($('#passwO').val()!=$('#passwR').val()){
+            alert("{%trans%}wachtwoord.match{%endtrans%}");
+            event.preventDefault();
+        }
+        if ($('#passwO').val().length<=5||$('#passwO').val().length>20){
+            alert("{%trans%}wachtwoord.lengte{%endtrans%}");
+            event.preventDefault();
+        }
+    })
+  </script>
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="span2">
+        <a href="{{ path('_welcome')}}"><i class="icon-arrow-left"></i> {% trans %}terugkeren.hoofdpagina{% endtrans %}</a>
+    </div>
+    <div class="span10">
+       {% if action == "invalidtoken" %}
+        <div class="alert alert-danger">
+            {% trans %} token.invalid {% endtrans %}
+        </div>
+       {% elseif action == "validtoken" %}
+        <h2>{%trans%}wijzig.wachtwoord.titel{%endtrans%}</h2>
+        <form method="post">
+            <label for="passwO">{%trans%}wachtwoord{%endtrans%}</label>
+            <input id="passwO" name="passwO" type="password" required/>
+            <label for="passwR">{%trans%}herhaal.wachtwoord{%endtrans%}</label>
+            <input id="passwR" name="passwR" type="password" required/>
+            <input type="hidden" name="submitted" value="subm"/>
+            <input type="submit" class="btn btn-primary" id="versturen" value="{%trans%}wijzig.wachtwoord{%endtrans%}"/>
+        </form>
+       {% elseif action == "updated" %}
+        <div class="alert alert-success">
+            {% trans %} wachtwoord.veranderd {% endtrans %}
+        </div>
+       {% endif %}
+    </div>
+</div>
+{% endblock %}

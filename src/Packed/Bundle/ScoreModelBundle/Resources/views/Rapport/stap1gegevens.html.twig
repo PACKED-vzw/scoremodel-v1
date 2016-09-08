@@ -1,0 +1,109 @@
+{% extends '::layout.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $('.disabled').click(function(){
+       alert('{%trans%}save.first{%endtrans%}');
+    });
+</script>
+{% endblock %}
+{% block sub%}
+<h1 class="subtitle">{%trans%}Rapport aanmaken{%endtrans%}</h1>
+{% endblock%}
+
+{% block body %}
+<div class="row">
+{% block rapportnavigatie %}
+
+<div class="span3">
+    <div id="rapport_navigatie">
+    <ul class="nav nav-list well">
+        <li class="nav-header">{%trans%}Rapport aanmaken{%endtrans%}</li>
+        {% block stap1 %}<li class="active"><a href="
+        {{ path('rapport_stap1',
+                {'_locale': app.request.locale,
+                 'id': rapport.id
+                 }) }}
+        ">{%trans%}stap1{%endtrans%}</a></li>{%endblock%}
+        {% block stap2 %}<li class="disabled"><a href="#">{%trans%}stap2{%endtrans%}</a></li>{%endblock%}
+        {% block stap3 %}<li class="disabled"><a href="#">{%trans%}stap3{%endtrans%}</a></li>{%endblock%}
+        <li class="nav-header">{%trans%}Rapport bekijken{%endtrans%}</li>
+        {% block stap4 %}<li class="disabled"><a href="#">{%trans%}Bekijk rapport{%endtrans%}</a></li>{%endblock%}
+    </ul>
+    </div>
+</div>
+    {% endblock %}
+<div class="span9">
+<form action="{{path('rapport_sectie', {'_locale': app.request.locale, 'id' : rapport.id, 'sid' : 1})}}" method="post" class="form-horizontal">
+    <div class="control-group">
+        <div class="control-label">
+            <label for="naam">{%trans%}Naam{%endtrans%}</label>
+        </div>
+        <div class="controls">
+            <input type="text" id="naam" name="naam" value="{{ app.user.username }}" readonly="true">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            <label for="email">{%trans%}Emailadres{%endtrans%}</label>
+        </div>
+        <div class="controls">
+            <input type="text" id="email" name="email" value="{{ app.user.email }}" readonly="true">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            <label for="organisatie">{%trans%}Organisatie{%endtrans%}</label>
+        </div>
+        <div class="controls">
+            <input type="text" id="organisatie" name="organisatie" value="{{ app.user.organisatie }}" readonly="true">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            <label for="typeOrganisatie">{%trans%}Type organisatie{%endtrans%}</label>
+        </div>
+        <div class="controls">
+            <input type="text" id="typeOrganisatie" name="typeOrganisatie" value="{{ app.user.typeOrganisatie }}" readonly="true">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            <label for="grootteOrganisatie">{%trans%}Grootte organisatie{%endtrans%}</label>
+        </div>
+        <div class="controls">
+            <input type="text" id="grootteOrganisatie" name="grootteOrganisatie" value="{{ app.user.grootteOrganisatie }}" readonly="true">
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            <label for="taal">{%trans%}Taal{%endtrans%}</label>
+        </div>
+        <div class="controls">
+            <input type="text" id="taal" name="taal" value="{{ app.user.taal }}" readonly="true">
+        </div>
+    </div>
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {%trans%}naam.rapport.waarschuwing{%endtrans%}
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            <label for="naamrapport">{%trans%}Naam rapport{%endtrans%}</label>
+        </div>
+        <div class="controls">
+            <input type="text" id="naamrapport" name="naamrapport" value="{{ rapport.naam }}" >
+        </div>
+    </div>
+
+    <div class="controls">
+        <input type="submit" name="volgende" value="{%trans%}volgende{%endtrans%}" class="btn">
+    </div>
+</form>
+    <div class="progress progress-striped active" style=" margin-top:25px;">
+        <div class="bar" style="width: 10%;"></div>
+    </div>
+</div>
+</div>
+{% endblock %}

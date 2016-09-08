@@ -1,0 +1,114 @@
+{% extends '::layout.html.twig' %}
+{%block homemenuclass%}active{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="span5" id="home-introtext">
+        <p>
+            {% if app.request.locale == "nl" %}
+            {{introtekst.waarde|raw}}
+            {% elseif app.request.locale =="en"%}
+            {{introtekst.waardeEn|raw}}
+            {% endif %}
+
+        </p>
+
+    </div>
+    <div class="span7">
+        {% if app.user %}
+        <h4>{%trans%}Lijst rapporten{%endtrans%}</h4>
+
+        {% if rapporten|length == 0 %}
+
+        <p>Je hebt nog geen rapport(en), maak een <a href="{{ path('rapport_stap1', {'_locale': app.request.locale }) }}">nieuw rapport</a> aan </p>
+        {% else %}
+
+
+        {%trans with {'%path%': path('rapport_stap1', {'_locale': app.request.locale }) }%}
+        recente.rapporten
+        {%endtrans%}
+        <div class="row">
+            <div class="span5">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{%trans%}Naam rapport{%endtrans%}</th>
+                        <th>{%trans%}Aangemaakt op{%endtrans%}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for rapport in rapporten%}
+                    <tr>
+                        <td><a href="{{path('rapport_stap1',{'_locale': app.request.locale, 'id': rapport.id})}}">
+                            {% if rapport.naam != "" %}
+                            {{rapport.naam}}
+                            {% else %}
+                            {% if app.request.locale == "nl"%}
+                            [naamloos rapport]
+                            {%elseif app.request.locale == "en"%}
+                            [nameless report]
+                            {%endif%}
+                            {% endif %}
+                        </a></td>
+                        <td>{{rapport.datumGeneratie | date('d-m-Y H:i:s')}}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {%trans with {'%path%': path('fos_user_registration_register')} %}niet.ingelogd.tekst{%endtrans%}
+
+        </div>
+
+        <form action="{{ path('fos_user_security_check') }}" method="post" class="form-horizontal">
+            <div class="control-group">
+                <div class="control-label">
+                    <label for="username">{%trans%}Gebruikersnaam{%endtrans%}</label>
+                </div>
+                <div class="controls">
+                    <input type="text" id="username" name="_username" value="" />
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <label for="password">{%trans%}Wachtwoord{%endtrans%}</label>
+                </div>
+                <div class="controls">
+                    <input type="password" id="password" name="_password" />
+                    <p><i class="icon-question-sign"></i> <a href="{{ path('wachtwoord_token_aanvragen') }}">{%trans%}Wachtwoord vergeten?{%endtrans%}</a></p>
+                </div>
+
+            </div>
+            <input type="hidden" name="_target_path" value="home" />
+
+            <div class="controls">
+                <input type="submit" name="login" class="btn btn-primary" value="{%trans%}Inloggen{%endtrans%}" />
+            </div>
+        </form>
+
+
+        {%endif%}
+
+
+        {% if app.user %}
+        <h4>{%trans%}Nieuw rapport{%endtrans%}</h4>
+        <div class="alert alert-info">
+
+            {%trans%}klik.nieuw{%endtrans%}
+
+        </div>
+
+
+        <a class="btn" href="{{ path('rapport_stap1', {'_locale': app.request.locale }) }}">Start  <i class="icon-play"></i></a>
+        <div class="progress progress-striped active" style=" margin-top:50px;">
+            <div class="bar" style="width: 5%;"></div>
+        </div>
+        {%endif%}
+    </div>
+</div>
+{% endblock %}

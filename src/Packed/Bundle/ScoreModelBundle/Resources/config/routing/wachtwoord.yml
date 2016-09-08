@@ -1,0 +1,13 @@
+wachtwoord_token_aanvragen:
+   pattern:  /{_locale}/reset
+   defaults: { _controller: "UserBundle:Wachtwoord:tokenAanvragen", _locale: nl }
+   requirements:
+                    _locale: en|nl
+
+
+wachtwoord_nieuw_wachtwoord_instellen:
+   pattern: /{_locale}/reset/{token}/{email}
+   defaults: { _controller: "UserBundle:Wachtwoord:nieuwWachtwoordInstellen", _locale: nl , token: 0, email:0 }
+   requirements:
+                    _locale: en|nl
+

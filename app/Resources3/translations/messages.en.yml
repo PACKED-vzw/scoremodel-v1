@@ -1,0 +1,116 @@
+21 of meer: 21 or more
+Organisatie: Organisation
+Type van de organisatie: Type of organisation
+Groote van de organisatie: Size of the organisation
+Taal: Language
+Archief: Archive
+Bibliotheek: Library
+Museum: Museum
+Andere: Other
+Nederlands: Dutch
+Engels: English
+terugkeren.hoofdpagina: Return to the homepage.
+registreren.titel: Register
+Documenten: Documents
+Disclaimer: Disclaimer
+Profiel: Profile
+Bekijk rapporten: Reports overview
+Afmelden: Log out
+Registreren: Register
+Welkom: Welcome
+Aangemaakt op: Created at
+Naam rapport: Name report
+Gebruikersnaam: Username
+Wachtwoord: Password
+Nieuw rapport: New report
+klik.nieuw: Click start to create a new report. Changes are recorded immediately. You can interrupt the survey at any time and resume later.
+niet.ingelogd.tekst: >
+ <strong>You are currently not logged in</strong> <br/> Please enter your credentials or create a <a href="%path%">new account</a>.
+ You could also use the tool anonymously by using:
+ <table>
+ <tr>
+ <td>Username</td> <td> <strong>anonymous</strong> </td>
+ </tr>
+ <tr>
+ <td>Password</td> <td><strong>anonymous</strong></td>
+ </tr>
+ </table>
+Wachtwoord vergeten?: Forgot password?
+tool.anoniem: >
+  <strong>Do you wish to use the tool anonymously?</strong><br/>
+  Push start to create a new report without logging in.
+Inloggen: Log in
+recente.rapporten: >
+  <p>
+  Below you'll find a list of your most recent reports.
+  You can continue a previous report, or create a <a href="%path%">new one</a>.</p>
+Lijst rapporten: List of reports
+Rapport aanmaken: Create report
+Gegevens invoeren: Fill out your information
+stap1: <strong>Step 1</strong> General information
+stap2: <strong>Step 2</strong> Sections
+stap3: <strong>Step 3</strong> Overview
+Bekijk rapport: View report
+Rapport bekijken: Report
+Naam: Name
+Emailadres: Email address
+Organisatie: Organisation
+Type organisatie: Type of organisation
+Grootte organisatie: Size of organisation
+Taal: Language
+naam.rapport.waarschuwing: <strong>Warning!</strong> Please enter a name for this report!
+Naam rapport: Name report
+volgende: next
+Sectie: Section
+Eisen: Demands
+ja: yes
+nee: no
+Risiconiveau: Risk level
+Context: Context
+Risico: Risk
+Voorbeeld: Example
+Totale score voor: Score for
+hoog: high
+normaal: normal
+laag: low
+Type van de organisatie: Type of organisation
+Grootte van de organisatie: Size of the organisation
+taal: Language
+registratie.type.archief: Archive
+registratie.type.museum: Museum
+registratie.type.andere: Other
+registratie.type.bibliotheek: Library
+nederlands: Dutch
+engels: English
+Samenvattend overzicht: Overview
+laatste.vraag: <p>This was the last question of the report</p>
+rapport.genereren: "<p>Click <a href=#rapportgenereren>generate</a> to view the report.</p>"
+rapport.secties.overzicht: "<p>You can review <a href=#secties>all the sections</a> before proceeding.</p>"
+Secties: Sections
+Behaald: Score
+Rapport genereren: Generate report
+Genereer: Generate
+RAPPORT: REPORT
+Download PDF: Download PDF
+Rapportgegevens: Report information
+Naam Rapport: Name Report
+Naam Organisatie: Name Organisation
+Naam Gebruiker: Name user
+Grafiek: Graph
+Resultaten: Results
+Inhoudsopgave: Table of Contents
+Acties: Actions
+wachtwoord.vergeten.titel: Forgot password?
+email.ingeven: Enter the email address for your user account.
+mail.verzonden.succes: An email has been sent with further instructions on how to reset your password.
+mail.verzonden.fout: Something went wrong with sending the email.
+Verstuur: Send
+probleem.versturen.mail: <p>Something went wrong with sending the email. Try again</p>
+gebruiker.nietgevonden: <p><strong>Error</strong> can't find user</p>
+wachtwoordvergeten.mail:  Hi, <br/> Click on the following link to reset your password <br/>
+
+Actieplan: Actions
+
+
+
+

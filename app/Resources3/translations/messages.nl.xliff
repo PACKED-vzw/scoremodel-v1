@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="nl" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>scoremodel.title</source>
+                <target>Scoremodel</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>welcome.text</source>
+                <target>Je bent al welkom hoor maar deze tekst zal via de AI worden ingesteld. Je mag dit voorlopig negeren.</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>registratie.type.archief</source>
+                <target>Archief</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>registratie.type.bibliotheek</source>
+                <target>Bibliotheek</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>registratie.type.museum</source>
+                <target>Museum</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>registratie.type.andere</source>
+                <target>Andere</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>21 of meer</source>
+                <target>21 of meer</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>nederlands</source>
+                <target>Nederlands</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>engels</source>
+                <target>Engels</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>taal</source>
+                <target>Taal</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>registreren.titel</source>
+                <target>Registreren</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>terugkeren.hoofdpagina</source>
+                <target>Keer terug naar de hoofdpagina.</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>ingelogd.als</source>
+                <target>U bent ingelogd als</target>
+            </trans-unit>
+
+            <trans-unit id="14">
+                <source>Inloggen</source>
+                <target>Inloggen</target>
+            </trans-unit>
+
+
+            <!--
+            niet.ingelogd : niet ingelogd ...
+
+            -->
+        </body>
+    </file>
+</xliff>

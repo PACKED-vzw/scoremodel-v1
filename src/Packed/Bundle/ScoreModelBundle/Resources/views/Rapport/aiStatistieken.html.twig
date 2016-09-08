@@ -1,0 +1,68 @@
+{% extends 'ScoreModelBundle:Rapport:aiLayout.html.twig' %}
+{% block statistiekenmenuclass%}active{% endblock %}
+{% block javascripts %}
+ {{parent()}}
+   <script type="text/javascript">
+    $(document).ready(function(){
+      $("#kies-sectie").change(function(){
+         if($(this).val()!="none")
+         {
+             $("#download-sectie").removeAttr("disabled").attr("href","{{path('ai_exportCsv')}}/"+$('#selecteer-taal').val() + "/" + $('#kies-sectie').val());
+
+         }
+         else{
+             $("#download-sectie").attr("disabled","disabled");
+
+         }
+      });
+
+      $("#selecteer-taal").change(function(){
+          if($("#kies-sectie").val()!="none")
+          {
+              $("#download-sectie").removeAttr("disabled").attr("href","{{path('ai_exportCsv')}}/"+$('#selecteer-taal').val() + "/" + $('#kies-sectie').val());
+
+          }
+          else{
+              $("#download-sectie").attr("disabled","disabled");
+
+          }
+       });
+     });
+
+   </script>
+{% endblock %}
+{% block body %}
+
+<div class="row">
+  <div class="span9">
+      <h2>Exporteer secties</h2>
+      <label for="kies-sectie">Kies sectie</label>
+
+      <select id="kies-sectie">
+               <option value="none">-</option>
+          {% for sectie in secties%}
+               <option value="{{sectie.id}}">{{sectie.waarde}}</option>
+          {% endfor %}
+      </select>
+
+      <label for="selecteer-taal">Selecteer taal</label>
+      <select id="selecteer-taal">
+         <option value="nederlands">Nederlands</option>
+         <option value="english">English</option>
+      </select>
+
+      <div>
+      <a href="" id="download-sectie" class="btn" disabled="disabled">Download als CSV</a>
+      </div>
+
+      <h2>Download statistieken</h2>
+
+
+      Nog even geduld ...
+  </div>
+
+
+</div>
+
+
+{% endblock %}

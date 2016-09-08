@@ -1,0 +1,30 @@
+document:
+    pattern:  /
+    defaults: { _controller: "ScoreModelBundle:Document:index" }
+
+document_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "ScoreModelBundle:Document:show" }
+
+document_new:
+    pattern:  /new
+    defaults: { _controller: "ScoreModelBundle:Document:new" }
+
+document_create:
+    pattern:  /create
+    defaults: { _controller: "ScoreModelBundle:Document:create" }
+    requirements: { _method: post }
+
+document_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "ScoreModelBundle:Document:edit" }
+
+document_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "ScoreModelBundle:Document:update" }
+    requirements: { _method: post }
+
+document_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "ScoreModelBundle:Document:delete" }
+    requirements: { _method: post }

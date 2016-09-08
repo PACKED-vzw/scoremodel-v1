@@ -1,0 +1,30 @@
+_welcome:
+    pattern:  /{_locale}
+    defaults: { _controller: ScoreModelBundle:Rapport:home, _locale: nl }
+    requirements:
+            _locale: en|nl
+
+home:
+    pattern:   /{_locale}/home
+    defaults:  { _controller: ScoreModelBundle:Rapport:home, _locale: nl }
+    requirements:
+        _locale: en|nl
+
+_wdt:
+    resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
+    prefix:   /_wdt
+
+_profiler:
+    resource: "@WebProfilerBundle/Resources/config/routing/profiler.xml"
+    prefix:   /_profiler
+
+_configurator:
+    resource: "@SensioDistributionBundle/Resources/config/routing/webconfigurator.xml"
+    prefix:   /_configurator
+
+_main:
+    resource: routing.yml
+
+_assetic:
+    resource: .
+    type:     assetic

@@ -1,0 +1,22 @@
+{% extends '::layout.html.twig' %}
+{%block faqmenuclass%}active{% endblock %}
+{% block sub %}<h1 class="subtitle">{%trans%} FAQ {%endtrans%}</h1>{%endblock%}
+{% block body %}
+   <div class="row">
+    <div class="span10 offset1">
+        <div class="allevragen well well-small">
+        {% if app.request.locale == "nl" %}
+            {{faqintro.waarde|raw}}
+        {% elseif app.request.locale =="en"%}
+            {{faqintro.waardeEn|raw}}
+        {% endif %}
+        </div>
+        {% if app.request.locale == "nl" %}
+            {{faq.waarde|raw}}
+        {% elseif app.request.locale =="en"%}
+            {{faq.waardeEn|raw}}
+        {% endif %}
+    </div>
+   </div>
+
+{%endblock%}

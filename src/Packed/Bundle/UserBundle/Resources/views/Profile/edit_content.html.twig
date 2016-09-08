@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="span2">
+        <a href="{{ path('_welcome')}}"><i class="icon-arrow-left"></i>{% trans %}terugkeren.hoofdpagina{% endtrans %}</a>
+    </div>
+    <div class="span10 ">
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit form-horizontal">
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.organisatie) }}
+    {{ form_row(form.typeOrganisatie) }}
+    {{ form_row(form.grootteOrganisatie) }}
+    {{ form_row(form.taal) }}
+    {{ form_widget(form) }}
+   <div class="controls">
+        <input type="submit" class="btn btn-primary" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}" />
+    </div>
+</form>
+</div>
+</div>

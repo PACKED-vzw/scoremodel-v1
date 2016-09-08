@@ -1,0 +1,19 @@
+ScoreModelBundle_rapport:
+    resource: "@ScoreModelBundle/Resources/config/routing/rapport.yml"
+    prefix:   /rapport
+
+ScoreModelBundle_menulinks:
+    resource: "@ScoreModelBundle/Resources/config/routing/menulinks.yml"
+    prefix:   /
+
+
+ScoreModelBundle_admin:
+    resource: "@ScoreModelBundle/Resources/config/routing/ai.yml"
+    prefix:   /admin
+
+ScoreModelBundle_wachtwoord:
+    resource: "@ScoreModelBundle/Resources/config/routing/wachtwoord.yml"
+    prefix:   /u
+
+
+

@@ -1,0 +1,103 @@
+{% extends 'ScoreModelBundle:Rapport:aiLayout.html.twig' %}
+{% block inhoudbeherenmenuclass%}active{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.document-bewerken').click(function(){
+                    var id_document = jQuery(this).attr("title");
+                    $('#wijzig-div').modal();
+                    $.ajax({
+                        url: '{{path("admin_document_edit")}}'+'/'+id_document
+                        ,
+                        success: function (data) {
+                            $('#wijzig-div-modal').html(data);
+                        }
+                    });
+
+
+                }
+
+        );
+    });
+</script>
+{% endblock %}
+
+
+{% block body %}
+<div class="modal" id="wijzig-div" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-body">
+        <div id="wijzig-div-modal">
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Annuleer</button>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="span9">
+        <h2>Nieuw document toevoegen </h2>
+
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <i class="icon-info-sign"></i> Het document zal enkel in de taal getoond worden waarvan de beschrijving is ingevuld.</a>.
+        </div>
+
+
+
+        {% if succes is defined %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            Bestand opgeladen!
+        </div>
+        {%endif%}
+        <form action="{{path('ai_beheren_documenten')}}" method="post" {{ form_enctype(form) }}>
+
+            {{ form_widget(form) }}
+
+            <p>
+                <button type="submit" class="btn btn-primary">Opladen</button>
+            </p>
+        </form>
+
+        <h2>Alle documenten</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                <th>Naam</th>
+                <th>Bestand</th>
+                <th>Beschrijving NL</th>
+                <th>Beschrijving EN</th>
+                <th>Actie</th>
+                </tr>
+            </thead>
+            <tbody>
+            {%for document in documents%}
+                <tr>
+
+                    <td>{{document.name}}</td>
+                    <td><a href="/{{document.getWebPath}}">{{document.path}}</a></td>
+                    <td>{{document.beschrijvingNl}}</td>
+                    <td>{{document.beschrijvingEn}}</td>
+
+
+                    <td>
+                        <button class="btn btn-mini document-bewerken" type="button" title="{{document.id}}"><i class="icon-pencil"></i></button>
+                    </td>
+
+
+                </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
